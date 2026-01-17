@@ -1,0 +1,331 @@
+/* ErrorPage.css - BookFinder Theme */
+
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a4d5e 0%, #2c5f6f 50%, #3d7080 100%);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.error-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(218, 165, 32, 0.12) 0%, transparent 60%);
+  animation: float 15s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(40px, -40px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-30px, 30px) rotate(240deg);
+  }
+}
+
+/* Floating book decorations */
+.error-container::after {
+  content: '📖';
+  position: absolute;
+  font-size: 100px;
+  opacity: 0.06;
+  top: 15%;
+  left: 10%;
+  animation: sway 10s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  50% {
+    transform: rotate(10deg) translateY(-20px);
+  }
+}
+
+.error-card {
+  background: #fdfaf5;
+  border-radius: 20px;
+  box-shadow: 
+    0 30px 90px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  padding: 70px 60px;
+  max-width: 650px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: slideInScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Decorative bookmark stripe */
+.error-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 30px;
+  right: 30px;
+  height: 4px;
+  background: linear-gradient(90deg, #8b4513, #daa520, #8b4513);
+  border-radius: 0 0 2px 2px;
+}
+
+.error-code {
+  font-size: 160px;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, #2c5f6f 0%, #1a4d5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 24px;
+  animation: pulse 2.5s ease-in-out infinite;
+  position: relative;
+  font-family: 'Georgia', serif;
+  letter-spacing: -5px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+  }
+}
+
+.error-code::after {
+  content: '404';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(44, 95, 111, 0.2) 0%, rgba(26, 77, 94, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  z-index: -1;
+  filter: blur(25px);
+  animation: glow 2.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.error-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #2c4a52;
+  margin: 0 0 20px 0;
+  animation: fadeIn 0.8s ease-out 0.3s both;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.error-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #8b4513, #daa520);
+  margin: 16px auto 0;
+  border-radius: 2px;
+  animation: expandWidth 0.6s ease-out 0.5s both;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.error-message {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #3d5a5f;
+  margin: 32px 0 45px 0;
+  font-weight: 400;
+  animation: fadeIn 0.8s ease-out 0.5s both;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-btn {
+  padding: 16px 48px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fdfaf5;
+  background: linear-gradient(135deg, #2c5f6f 0%, #1a4d5e 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(26, 77, 94, 0.4);
+  animation: fadeIn 0.8s ease-out 0.7s both;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.home-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.home-btn:hover::before {
+  left: 100%;
+}
+
+.home-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(26, 77, 94, 0.6);
+  background: linear-gradient(135deg, #347182 0%, #225d70 100%);
+}
+
+.home-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Decorative corner elements */
+.error-card::after {
+  content: '📚';
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  font-size: 60px;
+  opacity: 0.1;
+  animation: bookRotate 20s linear infinite;
+}
+
+@keyframes bookRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error-card {
+    padding: 60px 45px;
+  }
+
+  .error-code {
+    font-size: 120px;
+    letter-spacing: -3px;
+  }
+
+  .error-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .error-title::after {
+    width: 60px;
+    margin-top: 12px;
+  }
+
+  .error-message {
+    font-size: 16px;
+    margin: 28px 0 36px 0;
+  }
+
+  .home-btn {
+    padding: 14px 40px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .error-card {
+    padding: 50px 35px;
+    border-radius: 16px;
+  }
+
+  .error-code {
+    font-size: 100px;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+  }
+
+  .error-title {
+    font-size: 28px;
+  }
+
+  .error-title::after {
+    width: 50px;
+  }
+
+  .error-message {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 24px 0 32px 0;
+  }
+
+  .home-btn {
+    padding: 13px 36px;
+    font-size: 15px;
+  }
+
+  .error-card::after {
+    font-size: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

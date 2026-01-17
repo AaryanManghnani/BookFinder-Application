@@ -1,0 +1,24 @@
+# --- General ---
+.DS_Store
+Thumbs.db
+.vscode/
+
+# --- .NET / C# (Backend) ---
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+**/Migrations/
+**/appsettings.json
+**/appsettings.Development.json
+
+# --- React / Node (Frontend) ---
+**/node_modules/
+**/build/
+**/dist/
+.env
+.env.local
+npm-debug.log*
+yarn-debug.log*
+**/apiConfig.js

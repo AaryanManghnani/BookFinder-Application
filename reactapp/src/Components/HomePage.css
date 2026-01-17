@@ -1,0 +1,356 @@
+/* HomePage.css - BookFinder Theme */
+
+.home-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a4d5e 0%, #2c5f6f 50%, #3d7080 100%);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Hero Section */
+.home-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
+  animation: rotate 25s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Decorative floating books */
+.home-content::after {
+  content: '📚';
+  position: absolute;
+  font-size: 120px;
+  opacity: 0.08;
+  top: 15%;
+  right: 10%;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(5deg);
+  }
+}
+
+.hero-text {
+  max-width: 1000px;
+  text-align: center;
+  color: #fdfaf5;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-text h1 {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 28px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  font-family: 'Georgia', serif;
+  animation: fadeInUp 1s ease-out 0.2s both;
+  position: relative;
+}
+
+.hero-text h1::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, #daa520, #8b4513);
+  margin: 24px auto 0;
+  border-radius: 2px;
+  animation: expandWidth 0.8s ease-out 0.6s both;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 120px;
+  }
+}
+
+.hero-text p {
+  font-size: 22px;
+  line-height: 1.8;
+  opacity: 0.95;
+  font-weight: 300;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease-out 0.4s both;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contact Section / Footer */
+.contact-section {
+  background: #fdfaf5;
+  padding: 70px 50px 50px;
+  box-shadow: 0 -12px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #8b4513 0%, #daa520 50%, #8b4513 100%);
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.contact-section h3 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: #2c4a52;
+  margin-bottom: 16px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.contact-section h3::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #8b4513, #daa520);
+  margin: 16px auto 50px;
+  border-radius: 2px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
+  margin: 0 auto 50px;
+}
+
+.contact-item {
+  background: linear-gradient(135deg, rgba(44, 95, 111, 0.05) 0%, rgba(26, 77, 94, 0.08) 100%);
+  padding: 35px 30px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid rgba(139, 69, 19, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(44, 95, 111, 0.1) 0%, rgba(26, 77, 94, 0.15) 100%);
+  transition: left 0.5s ease;
+}
+
+.contact-item:hover::before {
+  left: 0;
+}
+
+.contact-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(26, 77, 94, 0.25);
+  border-color: rgba(139, 69, 19, 0.3);
+}
+
+.contact-item strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 700;
+  color: #2c5f6f;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-item p {
+  font-size: 16px;
+  color: #3d5a5f;
+  margin: 0;
+  font-weight: 500;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #5a6f75;
+  padding-top: 35px;
+  border-top: 2px solid rgba(139, 69, 19, 0.15);
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 44px;
+    margin-bottom: 24px;
+  }
+
+  .hero-text h1::after {
+    width: 80px;
+    margin-top: 20px;
+  }
+
+  .hero-text p {
+    font-size: 19px;
+  }
+
+  .home-content {
+    padding: 60px 30px;
+  }
+
+  .home-content::after {
+    font-size: 80px;
+  }
+
+  .contact-section {
+    padding: 60px 35px 40px;
+  }
+
+  .contact-section h3 {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .contact-section h3::after {
+    margin-bottom: 40px;
+  }
+
+  .contact-grid {
+    gap: 25px;
+  }
+
+  .contact-item {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-text h1::after {
+    width: 60px;
+    height: 3px;
+    margin-top: 16px;
+  }
+
+  .hero-text p {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .home-content {
+    padding: 50px 20px;
+  }
+
+  .home-content::after {
+    font-size: 60px;
+    top: 10%;
+    right: 5%;
+  }
+
+  .contact-section {
+    padding: 50px 24px 32px;
+  }
+
+  .contact-section h3 {
+    font-size: 28px;
+  }
+
+  .contact-section h3::after {
+    margin-bottom: 35px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-item {
+    padding: 24px 20px;
+  }
+
+  .contact-item strong {
+    font-size: 15px;
+  }
+
+  .contact-item p {
+    font-size: 14px;
+  }
+
+  .copyright {
+    font-size: 13px;
+    padding-top: 28px;
+  }
+}
