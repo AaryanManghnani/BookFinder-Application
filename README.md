@@ -50,81 +50,34 @@ The application is built using a decoupled architecture with a **.NET Core Web A
 Before running this project, ensure you have the following installed:
 * [Node.js](https://nodejs.org/) (v16 or higher)
 * [.NET SDK](https://dotnet.microsoft.com/download) (v6.0 or higher)
-* [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (Express or Developer edition)
+* [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (Express, Developer, or LocalDB)
 
 ---
 
 ## 📦 Installation & Setup
 
-### 1. Database Setup
-1.  Open `appsettings.json` in the Backend folder.
-2.  Update the `ConnectionStrings` to match your local SQL Server instance:
-    ```json
-    "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=BookFinderDB;Trusted_Connection=True;TrustServerCertificate=True;"
-    ```
+### 1. Configuration (Crucial Step)
+Before running the backend, you must configure the database connection and JWT secret settings.
 
-### 2. Backend (API) Setup
-1.  Navigate to the backend project folder:
-    ```bash
-    cd BookFinderBackend
-    ```
-2.  Apply Entity Framework migrations to create the database:
-    ```bash
-    dotnet ef database update
-    ```
-3.  Start the API server:
-    ```bash
-    dotnet run
-    ```
-    *The API will typically start on `https://localhost:7192`.*
+1.  Navigate to the `dotnetapp` folder.
+2.  Open (or create) `appsettings.json`.
+3.  Ensure your file looks like this (update `Server` name as needed):
 
-### 3. Frontend (React) Setup
-1.  Navigate to the frontend project folder:
-    ```bash
-    cd BookFinderFrontend
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Verify API Configuration:
-    * Open `src/apiConfig.js` and ensure the URL matches your running backend port:
-        ```javascript
-        const API_BASE_URL = "https://localhost:7192/api";
-        export default API_BASE_URL;
-        ```
-4.  Start the React development server:
-    ```bash
-    npm start
-    ```
-    *The app will open at `http://localhost:3000`.*
-
----
-
-## 🔑 Usage Guide
-
-### Roles & Credentials
-Since this is a fresh database, you will need to register users first.
-
-**1. Create an Admin (BookRecommender)**
-* Go to **Sign Up**.
-* Fill in details and select Role: **Book Recommender**.
-* Login. You will see the "Books" dropdown with "Add Book" options.
-
-**2. Create a User (BookReader)**
-* Go to **Sign Up**.
-* Fill in details and select Role: **Book Reader**.
-* Login. You will see a "Books" link that leads to a read-only view.
-
----
-
-## 📂 Project Structure
-
-```text
-/src
-  ├── Components/            # Shared Components (Login, Signup, Home, Error)
-  ├── BookRecommenderComponents/  # Admin components (Add/Edit Form, Manage Table)
-  ├── BookReaderComponents/       # User components (Read-Only View)
-  ├── App.js                 # Main Routing Logic
-  ├── apiConfig.js           # API Connection String
-  └── index.css              # Global Glassmorphism Styles
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=BookFinderDB;Trusted_Connection=True;TrustServerCertificate=True;"
+  },
+  "Jwt": {
+    "Key": "ThisIsAYeryLongSecretKeyForSecurityPurposes123!",
+    "Issuer": "http://localhost:7192",
+    "Audience": "http://localhost:7192"
+  }
+}
