@@ -79,6 +79,7 @@ Before running this project, ensure you have the following installed:
     "Secret": "ThisIsASecretKeyForJWTTokenGeneration12345"
   }
 }
+```
 
 ### 2. Backend (API) Setup
 1.  Navigate to the backend project folder:
