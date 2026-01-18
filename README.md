@@ -50,18 +50,16 @@ The application is built using a decoupled architecture with a **.NET Core Web A
 Before running this project, ensure you have the following installed:
 * [Node.js](https://nodejs.org/) (v16 or higher)
 * [.NET SDK](https://dotnet.microsoft.com/download) (v6.0 or higher)
-* [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (Express, Developer, or LocalDB)
+* [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (Express or Developer edition)
 
 ---
 
 ## 📦 Installation & Setup
 
-### 1. Configuration (Crucial Step)
-Before running the backend, you must configure the database connection and JWT secret settings.
-
+### 1. Database Setup
 1.  Navigate to the `dotnetapp` folder.
 2.  Open (or create) `appsettings.json`.
-3.  Ensure your file looks like this (update `Server` name as needed):
+3.  Copy the configuration below, but ensure you update the `ConnectionStrings` to match your own SQL Server and the `JWT` settings:
 
 ```json
 {
@@ -73,11 +71,79 @@ Before running the backend, you must configure the database connection and JWT s
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "DefaultConnection": "Server=.\\SQLEXPRESS;Database=BookFinderDB;Trusted_Connection=True;TrustServerCertificate=True;"
+    "DefaultConnection": "Data Source=YOUR_SQL_SERVER_NAME;Initial Catalog=appdb;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Application Name='SQL Server Management Studio';Command Timeout=0"
   },
-  "Jwt": {
-    "Key": "ThisIsAYeryLongSecretKeyForSecurityPurposes123!",
-    "Issuer": "http://localhost:7192",
-    "Audience": "http://localhost:7192"
+  "JWT": {
+    "ValidAudience": "http://localhost:5000",
+    "ValidIssuer": "http://localhost:5000",
+    "Secret": "ThisIsASecretKeyForJWTTokenGeneration12345"
   }
 }
+
+### 2. Backend (API) Setup
+1.  Navigate to the backend project folder:
+    ```bash
+    cd dotnetapp
+    ```
+2.  Apply Entity Framework migrations to create the database:
+    ```bash
+    dotnet ef database update
+    ```
+3.  Start the API server:
+    ```bash
+    dotnet run
+    ```
+    *The API will typically start on `https://localhost:7192`.*
+
+### 3. Frontend (React) Setup
+1.  Navigate to the frontend project folder:
+    ```bash
+    cd reactapp
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Verify API Configuration:
+    * Open `src/apiConfig.js` and ensure the URL matches your running backend port:
+        ```javascript
+        const API_BASE_URL = "https://localhost:7192/api";
+        export default API_BASE_URL;
+        ```
+4.  Start the React development server:
+    ```bash
+    npm start
+    ```
+    *The app will open at `http://localhost:3000`.*
+
+---
+
+## 🔑 Usage Guide
+
+### Roles & Credentials
+**1. Create an Admin (BookRecommender)**
+* Go to **Sign Up**.
+* Fill in details and select Role: **Book Recommender**.
+* Login. You will see the "Books" dropdown with "Add Book" options.
+
+**2. Create a User (BookReader)**
+* Go to **Sign Up**.
+* Fill in details and select Role: **Book Reader**.
+* Login. You will see a "Books" link that leads to a read-only view.
+
+---
+
+## 📂 Project Structure
+
+```text
+/
+├── dotnetapp/             # ASP.NET Core Web API Backend
+│   ├── Controllers/       # API Endpoints
+│   ├── Models/            # Database Entities
+│   └── Program.cs         # App Configuration
+├── reactapp/              # React Frontend
+│   ├── src/
+│   │   ├── Components/    # Shared UI (Login, Signup, Home)
+│   │   ├── BookRecommenderComponents/  # Admin Views
+│   │   └── BookReaderComponents/       # User Views
+└── README.md              # Project Documentation
