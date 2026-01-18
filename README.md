@@ -88,6 +88,8 @@ Before running this project, ensure you have the following installed:
     ```
 2.  Apply Entity Framework migrations to create the database:
     ```bash
+    dotnet tool install --global dotnet-ef
+    dotnet ef migrations add MigrationName
     dotnet ef database update
     ```
 3.  Start the API server:
